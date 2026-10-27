@@ -1,0 +1,235 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIBIL Score & Credit Health Assistant</title>
+    
+    <!-- CSS STYLES (App Design) -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #0056b3;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #f4f7f6;
+            padding-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 18px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .btn-secondary {
+            background-color: #17a2b8;
+        }
+
+        .btn-secondary:hover {
+            background-color: #138496;
+        }
+
+        .result-box {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .premium-card {
+            border: 2px solid #ffc107;
+            background-color: #fffdf5;
+            text-align: center;
+        }
+
+        .premium-card h3 {
+            color: #d9534f;
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .buy-btn {
+            display: block;
+            background-color: #ff9900;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-top: 12px;
+            transition: background 0.3s;
+        }
+
+        .buy-btn:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CIBIL Score Check & Dispute Assistant</h1>
+        <p>ਆਪਣਾ CIBIL ਸਕੋਰ ਸੁਧਾਰੋ ਅਤੇ ਗਲਤ ਐਂਟਰੀਆਂ ਨੂੰ ਠੀਕ ਕਰੋ</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Section 1: CIBIL Health Calculator -->
+        <section class="card">
+            <h2>1. CIBIL Estimated Health Check</h2>
+            <form id="cibilForm">
+                <label for="creditHistory">ਕ੍ਰੈਡਿਟ ਹਿਸਟਰੀ (ਸਾਲਾਂ ਵਿੱਚ):</label>
+                <input type="number" id="creditHistory" placeholder="ਜਿਵੇਂ: 3" required min="0">
+
+                <label for="delayedPayments">ਕੀ ਪਿਛਲੇ 12 ਮਹੀਨਿਆਂ ਵਿੱਚ ਕੋਈ ਲੇਟ ਪੇਮੈਂਟ ਹੋਈ ਹੈ?</label>
+                <select id="delayedPayments">
+                    <option value="no">ਨਹੀਂ (No Delay)</option>
+                    <option value="yes">ਹਾਂ (Yes)</option>
+                </select>
+
+                <label for="creditUtilization">ਕ੍ਰੈਡਿਟ ਕਾਰਡ ਲਿਮਿਟ ਕਿੰਨੀ ਵਰਤਦੇ ਹੋ?</label>
+                <select id="creditUtilization">
+                    <option value="low">30% ਤੋਂ ਘੱਟ (Ideal)</option>
+                    <option value="high">50% ਤੋਂ ਵੱਧ (High Risk)</option>
+                </select>
+
+                <button type="submit">Score Estimate ਦੇਖੋ</button>
+            </form>
+            <div id="result" class="result-box"></div>
+        </section>
+
+        <!-- Section 2: Dispute Generator -->
+        <section class="card">
+            <h2>2. CIBIL Mismatch / Dispute Email Generator</h2>
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
+                ਜੇਕਰ ਤੁਹਾਡੇ CIBIL ਵਿੱਚ ਕੋਈ ਗਲਤ ਲੋਨ ਦਿਖ ਰਿਹਾ ਹੈ, ਤਾਂ ਈਮੇਲ ਟੈਂਪਲੇਟ ਕਾਪੀ ਕਰਕੇ CIBIL ਨੂੰ ਭੇਜੋ:
+            </p>
+            <button class="btn-secondary" onclick="copyDisputeTemplate()">Dispute Template ਕਾਪੀ ਕਰੋ</button>
+        </section>
+
+        <!-- Section 3: Premium PDF Offer ($199) -->
+        <section class="card premium-card">
+            <h2>3. Master CIBIL Improvement Guide (PDF)</h2>
+            <p style="font-size: 14px; color: #555;">
+                ਸਿੱਖੋ ਕਿ 90 ਦਿਨਾਂ ਵਿੱਚ CIBIL ਸਕੋਰ 750+ ਕਿਵੇਂ ਕਰਨਾ ਹੈ। ਸਟੈੱਪ-ਬਾਈ-ਸਟੈੱਪ ਗਾਈਡ!
+            </p>
+            <h3>ਕੀਮਤ: ₹199</h3>
+            <!-- ਆਪਣਾ Razorpay/Instamojo Payment Link ਹੇਠਾਂ href ਵਿੱਚ ਪਾਓ -->
+            <a href="YOUR_PAYMENT_LINK_HERE" class="buy-btn" target="_blank">ਹੁਣੇ ਖਰੀਦੋ (Buy PDF ₹199)</a>
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT (App Logic) -->
+    <script>
+        // CIBIL Health Check Form Submit Event
+        document.getElementById('cibilForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let history = parseInt(document.getElementById('creditHistory').value);
+            let delay = document.getElementById('delayedPayments').value;
+            let utilization = document.getElementById('creditUtilization').value;
+
+            let resultDiv = document.getElementById('result');
+            resultDiv.style.display = "block";
+
+            if (delay === 'yes') {
+                resultDiv.style.backgroundColor = "#f8d7da";
+                resultDiv.style.color = "#721c24";
+                resultDiv.innerHTML = "Estimated Score: 600 - 680 (High Risk)<br><small>ਤੁਹਾਨੂੰ ਲੇਟ ਪੇਮੈਂਟਸ ਠੀਕ ਕਰਨ ਅਤੇ CIBIL Dispute ਪਾਉਣ ਦੀ ਲੋੜ ਹੈ।</small>";
+            } else if (utilization === 'high') {
+                resultDiv.style.backgroundColor = "#fff3cd";
+                resultDiv.style.color = "#856404";
+                resultDiv.innerHTML = "Estimated Score: 680 - 720 (Medium Risk)<br><small>ਆਪਣੀ ਕ੍ਰੈਡਿਟ ਲਿਮਿਟ ਵਰਤੋਂ 30% ਤੋਂ ਘੱਟ ਕਰੋ।</small>";
+            } else {
+                resultDiv.style.backgroundColor = "#d4edda";
+                resultDiv.style.color = "#155724";
+                resultDiv.innerHTML = "Estimated Score: 750 - 820 (Good Health)<br><small>ਤੁਹਾਡਾ CIBIL ਹੈਲਥ ਸਕੋਰ ਬਹੁਤ ਵਧੀਆ ਹੈ!</small>";
+            }
+        });
+
+        // Copy Dispute Template to Clipboard
+        function copyDisputeTemplate() {
+            let template = "Subject: Dispute Regarding Inaccurate Information in CIBIL Report\n\nDear CIBIL Team,\n\nI recently checked my CIBIL report and noticed a mismatch/incorrect loan entry under Account No: [ENTER_ACC_NO_HERE].\n\nI request you to kindly verify this record with the respective bank and correct it at the earliest.\n\nThank you,\nName: [YOUR_NAME]\nPAN No: [YOUR_PAN]\nContact: [YOUR_PHONE]";
+            
+            navigator.clipboard.writeText(template).then(() => {
+                alert("Dispute Email Template ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ! ਤੁਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਈਮੇਲ ਵਿੱਚ ਪੇਸਟ ਕਰ ਸਕਦੇ ਹੋ।");
+            }).catch(err => {
+                alert("Copy ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ ਆਈ: " + err);
+            });
+        }
+    </script>
+</body>
+</html>
